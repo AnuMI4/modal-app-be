@@ -1,6 +1,3 @@
-// index.js
-
-// Load environment variables from .env file (if using dotenv)
 require('dotenv').config();
 
 const express = require('express');
@@ -16,7 +13,7 @@ app.use(bodyParser.json());
 
 // Middleware to add CORS headers to every response
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust the '*' to your specific domain if needed
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -39,8 +36,8 @@ app.post('/send-email', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER, // Using environment variable
-      pass: process.env.EMAIL_PASS // Using environment variable
+      user: process.env.EMAIL_USER, 
+      pass: process.env.EMAIL_PASS 
     }
   });
 
@@ -62,7 +59,6 @@ app.post('/send-email', (req, res) => {
   });
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
